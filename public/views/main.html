@@ -1,0 +1,192 @@
+    <header id="home" class="wow fadeInUp">
+        <!--/#main-nav-->
+        <div class="main-nav">
+            <div class="container">
+                    <nav class="navbar navbar-default navbar-fixed-top">
+                        <div class="container">
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                            <div class="navbar-header">
+                                <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a href="#" class="navbar-brand"><img src="images/logo.png" alt="" style="width: 50px; height: 50px;"></a> 
+                            </div>
+                            <!-- Collection of nav links and other content for toggling -->
+                            <div id="navbarCollapse" class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="#footer" ng-show="admin.isLogged" ng-click="admin.logout();">התנתקות</a></li>
+                                    <li><a href="/adminPanel" ng-show="admin.isLogged">{{admin.adminInfo.username}} פאנל ניהולי</a></li>
+                                    <li><a href="/adminPanel" ng-show="admin.isLoggedProfile">{{admin.profileInfo.username}} פאנל ניהולי</a></li>
+                                    <li><a href="#footer">התקשרות</a></li>
+                                    <li><a href="#About-us">מידע נוסף</a></li>
+                                    <li><a href='#features'>פיצ'רים</a></li>
+                                    <li class="active"><a href="/">כרטיס ביקור</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+            </div>
+        </div>
+        <!--/#main-nav-->
+        <div class="header-img container-fluid">
+            <div class="caption wow bounceIn">
+                <!-- <h1>כרטיס ביקור דיגיטלי חכם</h1>
+                ללא כל צורך באפליקצייה -->
+                {{main.getAllMain.title}}
+                <h1>{{main.getAllMain.sub_info_top}}</h1>
+                {{main.getAllMain.sub_title_text}}
+            </div>
+        </div>
+    </header>
+    <!--/#home-->
+
+    <div id="features">
+        <h1>יתרונות מרכזיים</h1>
+        <div class="block-illustration">
+            <div class="big-illustration">
+                <img src="images/phone_visitcard.jpg" alt="">
+            </div>
+            <div class="text-illustration">
+                <div class="little-info-illustration-inside col-xs-12 col-md-12">
+                    <ul>
+                        <li ng-repeat="feature in main.getAllFeatures" class="wow bounceInRight">
+                            <p>{{feature.title}}</p>
+                            {{feature.sub_info}}
+                        </li>
+                        <!-- <li class="wow bounceInRight">
+                            <p>דינמי</p>
+                            כרטיס הביקור הדיגיטלי ניתן לעדכון במהירות ובקלות, בכל רגע נתון                            
+                        </li>
+                        <li class="wow bounceInRight">
+                            <p>נוח לגישה</p>
+                            עם B-share כרטיס הביקור שלך נמצא במרחק הקלקה מלקוחותיך                            
+                        </li>
+                        <li class="wow bounceInRight">
+                            <p>ידידותי לסביבה</p>
+                            מקטין את טביעת הרגל הפחמנית על ידי ייתור כריתת עצים לנייר של כרטיסי ביקור                            
+                        </li>
+                        <li class="wow bounceInRight">
+                            <p>שיתוף מושלם</p>
+                            אפשרויות שיתוף מרובות מבטיחות שכרטיס הביקור שלך יוכל להגיע לכל לקוח, ושלקוחותיך יוכלו למצוא אותך במהירות                            
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /illustration -->
+    <!-- About us -->
+    <div id="about-us">
+        <div class="container">
+            <h1>{{main.getAllAbout.title}}</h1>
+            <div class="about-text">
+                {{main.getAllAbout.sub_info}}<br>
+                כרטיס ביקור דיגיטלי הוא הכרחי לכל עסק כיום, כפי שפעם היה כרטיס הנייר ואנחנו ב-B-share שמנו לנו למטרה להיות בחזית הטכנולוגית של התחום. לשם כך השקענו מאמצים רבים בפיתוח מערכת כרטיסי הביקור הדיגיטליים החכמה והמתקדמת בישראל, שתסייע לבעלי עסקים לייצר כרטיסי ביקור שיעלו את מיתוג העסק שלהם לרמה הבאה. ביחד עם חווית שימוש קלה ונעימה – מעולם לא היה פשוט יותר לייצר כרטיסי ביקור מעוצבים, דינמיים וקלים להפצה אשר יסייעו לכם לקדם ולשווק את כרטיס הביקור הדיגיטלי של העסק שלכם כמעט מבלי להשקיע זמן ומשאבים.
+                <div class="img-about">
+                    <img src="images/phone_visitcard.jpg">
+                </div>
+            </div>  
+            <div class="social-media">
+                <ul>
+                    <li><i class="fa fa-facebook-square" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-linkedin" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-instagram" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-skype" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-snapchat-ghost" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-slack" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-pinterest" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-slideshare" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-weixin" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-whatsapp" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-vimeo" aria-hidden="true"></i></li>
+                    <li><i class="fa fa-youtube" aria-hidden="true"></i></li>
+                </ul>
+            </div>          
+        </div>
+    </div>
+    
+    <!-- Customers -->
+    <div id="clients-logo-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="block">
+                    <div id="clients-logo" class="owl-carousel">
+                            <div class="clients-logo-img">
+                                <img src="/images/customers/theBlender.png" alt="The Blender">
+                            </div>
+                            <div class="clients-logo-img">
+                                <img src="/images/customers/fixforyou.jpg" alt="Fix for you">
+                            </div>
+                            <div class="clients-logo-img">
+                                <img src="/images/customers/iagree.png" alt="I agree">
+                            </div>
+                            <div class="clients-logo-img">
+                                 <img src="/images/customers/bankpoalim.jpg" alt="Bank hapolim">
+                            </div>
+                            <div class="clients-logo-img">
+                                <img src="/images/customers/shay-sys.png" alt="Shay systems">
+                            </div>
+                            <div class="clients-logo-img">
+                                <img src="/images/customers/rmobile.gif" alt="R- Mobile">
+                            </div>
+                            <div class="clients-logo-img">
+                                <img src="/images/customers/zbeng.jpg" alt="Zbeng">
+                            </div>
+                            <div class="clients-logo-img">
+                                <img src="/images/customers/zork.png" alt="זורק השוואת מחירים">
+                            </div>
+                            <div class="clients-logo-img">
+                                <img src="/images/customers/ip-comp.jpg" alt="Ip מחשבים">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+            <div class="body-footer container">
+                <div class="section-inside">
+                    <div class="text-section">
+                        <div class="info-on">
+                            <p><i class="fa fa-phone" aria-hidden="true"></i> יצירת קשר</p>
+                            <li>support@easy2share.co.il</li>
+                            <li>משרד: 054-4481412</li>
+                            <li>חולון, אזור תעשייה</li>                            
+                        </div>
+                        <div class="info-on">
+                            <form ng-submit="main.savePhoneOrEmail(phoneNumber)" ng-show="main.form_active">
+                                <input type="text" placeholder="שם מלא" ng-model="main.phoneNumber.full_name">
+                                <div class="input-group">
+                                    <input type="text" placeholder="אימייל או מספר טלפון" ng-model="main.phoneNumber.phone_or_email">
+                                    <button type="submit" class="btn btn-danger"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                </div>
+                            </form>
+                            <div class="after-send" ng-hide="main.form_active">
+                                <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+                                <span class="sr-only">Loading...</span>
+                                תודה ששלחת פרטייך, ניצור קשר בהקדם
+                            </div>
+                            <div class="between-section-foot">
+                                <p><i class="fa fa-clock-o" aria-hidden="true"></i> שעות פעילות</p>
+                                <li>ראשון- חמישי: 9: 18:00</li>
+                                <li>יום שישי: 9: 14:00</li>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-section">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54129.02634887028!2d34.81622875518252!3d32.01337603943087!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502b4bb0c33bf39%3A0xfbdd79640525e72d!2z15fXldec15XXnw!5e0!3m2!1siw!2sil!4v1509203342279" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="hub-foot">
+                    <p>כל הזכויות שמורות ל <a href="http://JFalcon.net">JFalcon</a></p>
+                </div>
+            </div>
+        </div>
+
+

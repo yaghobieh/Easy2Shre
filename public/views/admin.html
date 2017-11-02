@@ -1,0 +1,309 @@
+<div class="main-nav">
+    <div class="container">
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="#" class="navbar-brand"><img src="images/logo.png" alt="" style="width: 50px; height: 50px;"></a> 
+                    </div>
+                    <!-- Collection of nav links and other content for toggling -->
+                    <div id="navbarCollapse" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#footer" ng-show="admin.isLogged" ng-click="admin.logout();">התנתקות</a></li>
+                            <li><a href="/adminPanel" ng-show="admin.isLogged">{{admin.adminInfo.username}} פאנל ניהולי</a></li>
+                            <li class="active"><a href="/">חזור אחורה</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+    </div>
+</div>
+
+<div class="clientToCheck">
+    <span class="space-maker-left" ng-repeat="client in adminPanel.getAllCients"><label for="danger" class="btn" ng-class="{ 'btn-danger' : client.checked == false, 'btn-info' : client.checked == true }" ng-click="adminPanel.updateClient(clientToEdit, $index)">{{client.full_name}} <br> {{client.phone_or_email}} 
+      <i ng-class="{ 'fa fa-refresh fa-spin fa-fw' : client.checked == false, 'fa fa-handshake-o' : client.checked == true }"></i>
+      <span class="sr-only">Loading...</span></span></label></span>
+</div>
+
+<div class="container space-maker-bottom">
+    <div class="row">
+          <div class="col-lg-5 col-md-5 col-sm-8 col-xs-9 bhoechie-tab-container">
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+                <div class="list-group">
+                  <a href="#" class="list-group-item active text-center">
+                    <h4 class="glyphicon glyphicon-plane"></h4><br/>חלק עליון
+                  </a>
+                  <a href="#" class="list-group-item text-center">
+                    <h4 class="fa fa-facebook"></h4><br/>קישורים
+                  </a>
+                  <a href="#" class="list-group-item text-center">
+                    <h4 class="glyphicon glyphicon-home"></h4><br/>מידע עלינו
+                  </a>
+                  <a href="#" class="list-group-item text-center">
+                    <h4 class="fa fa-address-card"></h4><br/>פרופיל חדש
+                  </a>
+                  <a href="#" class="list-group-item text-center">
+                      <h4 class="fa fa-address-card"></h4><br/>ניהול פרופילים
+                  </a>
+                  <a href="#" class="list-group-item text-center">
+                    <h4 class="fa fa-asterisk"></h4><br/>פיצ'רים
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+                  <!-- flight section -->
+                  <div class="bhoechie-tab-content active">
+                      <center>
+                        <p dir="rtl">עמוד זה נערך בתאריך: {{adminPanel.getAllMain.edit_date}}</p>
+                        <form ng-submit="adminPanel.updateMain(mainToUpdate)">
+                            <div class="form-group col-lg-10 col-md-10">
+                              <label for="title">כותרת עליונה</label>
+                              <input type="text" class="form-control" ng-model="adminPanel.mainToUpdate.title" placeholder="{{adminPanel.getAllMain.title}}">
+                            </div>
+                            <div class="form-group col-lg-10 col-md-10">
+                              <label for="sub_title_text">כותרת משתנית</label>
+                              <input type="text" class="form-control" ng-model="adminPanel.mainToUpdate.sub_title_text" placeholder="{{adminPanel.getAllMain.sub_title_text}}">
+                            </div>
+                            <div class="form-group col-lg-10 col-md-10">
+                              <label for="sub_info_top">כותרת תחתונה</label>
+                              <input type="text" class="form-control" ng-model="adminPanel.mainToUpdate.sub_info_top" placeholder="{{adminPanel.getAllMain.sub_info_top}}">
+                            </div>
+                            <div class="form-group col-lg-10 col-md-10">
+                              <button class="btn btn-danger" type="submit">שנה נתונים</button>
+                            </div>
+                        </form>
+                      </center>
+                  </div>
+                  <!-- train section -->
+                  <div class="bhoechie-tab-content">
+                      <center>
+                          <p dir="rtl">עמוד זה נערך בתאריך: {{adminPanel.aboutSectionToUpdate.edit_date}}</p>
+                          <form ng-submit="adminPanel.updateAboutSection(aboutSectionToUpdate)">
+                              <div class="form-group col-lg-10 col-md-10">
+                                <label for="title">מייל ראשי: </label>
+                                <input type="text" class="form-control" ng-model="adminPanel.aboutSectionToUpdate.email" placeholder="{{adminPanel.getAllAbout.email}}">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                <label for="sub_title_text">פייסבוק: </label>
+                                <input type="text" class="form-control" ng-model="adminPanel.aboutSectionToUpdate.facebok" placeholder="{{adminPanel.getAllAbout.facebok}}">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                <label for="sub_info_top">אינסטגרם: </label>
+                                <input type="text" class="form-control" ng-model="adminPanel.aboutSectionToUpdate.instagram" placeholder="{{adminPanel.getAllAbout.instagram}}">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                <button class="btn btn-danger" type="submit">שנה נתונים</button>
+                              </div>
+                          </form>
+                      </center>
+                  </div>
+      
+                  <!-- hotel search -->
+                  <div class="bhoechie-tab-content">
+                      <center>
+                          <p dir="rtl">עמוד זה נערך בתאריך: {{adminPanel.aboutSectionToUpdate.edit_date}}</p>
+                          <form ng-submit="adminPanel.updateAboutSection(aboutSectionToUpdate)">
+                              <div class="form-group col-lg-10 col-md-10">
+                                <label for="title">כותרת: </label>
+                                <input type="text" class="form-control" ng-model="adminPanel.aboutSectionToUpdate.title" placeholder="{{adminPanel.getAllAbout.title}}">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                <label for="sub_title_text">מידע משני: </label>
+                                <input type="text" class="form-control" ng-model="adminPanel.aboutSectionToUpdate.sub_info" placeholder="{{adminPanel.getAllAbout.sub_info}}">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                <label for="sub_info_top">אודותינו</label>
+                                <input type="text" class="form-control" ng-model="adminPanel.aboutSectionToUpdate.about_section_title" placeholder="{{adminPanel.getAllAbout.about_section_title}}">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                  <label for="sub_info_top">אודותינו (משני)</label>
+                                  <input type="text" class="form-control" ng-model="adminPanel.aboutSectionToUpdate.about_section" placeholder="{{adminPanel.getAllAbout.about_section}}">
+                                </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                <button class="btn btn-danger" type="submit">שנה נתונים</button>
+                              </div>
+                          </form>
+                      </center>
+                  </div>
+                  <div class="bhoechie-tab-content">
+                      <center>
+                          <form ng-submit="adminPanel.createNewProfile(profileInfo)">
+                              <div class="form-group col-lg-10 col-md-10">
+                                {{adminInfo.profileInfoMsg}}
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                <label for="username">שם משתמש: </label>
+                                <input type="text" class="form-control" ng-model="adminPanel.profileInfo.username">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                <label for="password">סיסמא: </label>
+                                <input type="password" class="form-control" ng-model="adminPanel.profileInfo.password">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                  <label for="email">מייל: </label>
+                                  <input type="email" class="form-control" ng-model="adminPanel.profileInfo.email">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                  <label for="profile_picture">תמונת משתמש: </label>
+                                  <input type="text" class="form-control" ng-model="adminPanel.profileInfo.profile_picture">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                  <label for="about">מידע עלייך: </label>
+                                  <input type="text" class="form-control" ng-model="adminPanel.profileInfo.about">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                  <label for="username">מספר טלפון: </label>
+                                  <input type="text" class="form-control" ng-model="adminPanel.profileInfo.phone_number">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                  <label for="cover_photo">Cover: </label>
+                                  <input type="text" class="form-control" ng-model="adminPanel.profileInfo.cover_photo">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                  <label for="facebook">facebook: </label>
+                                  <input type="text" class="form-control" ng-model="adminPanel.profileInfo.facebook">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                  <label for="instagram">instagram: </label>
+                                  <input type="text" class="form-control" ng-model="adminPanel.profileInfo.instagram">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                  <label for="whatsapp">whatsapp: </label>
+                                  <input type="text" class="form-control" ng-model="adminPanel.profileInfo.whatsapp">
+                              </div>  
+                              <div class="form-group col-lg-10 col-md-10">
+                                  <label for="whatsapp">linkedIn: </label>
+                                  <input type="text" class="form-control" ng-model="adminPanel.profileInfo.linkedIn">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                  <label for="location">location: </label>
+                                  <input type="text" class="form-control" ng-model="adminPanel.profileInfo.location">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                <button class="btn btn-info" type="submit">הוסף פרופיל חדש</button>
+                              </div>
+                          </form>
+                      </center>
+                  </div>
+                  <div class="bhoechie-tab-content">
+                      <center>
+                          <div class="form-group">
+                              <label class="control-label col-sm-3" for="username">בחר משתמש</label>
+                              <div class="col-sm-6 col-md-8">
+                                <select id="username" class="form-control" ng-model="adminPanel.chengedUser" ng-click="adminPanel.getUserByUsername()">
+                                  <option ng-repeat="profile in adminPanel.profileToUpdate">{{profile.username}}</option>
+                                </select> 
+                              </div>
+                            </div>   
+                            <form ng-submit="adminPanel.editProfileByUsername(getUserBack)" ng-show="adminPanel.showUserBack">
+                                <div class="form-group col-lg-10 col-md-10">
+                                    {{adminPanel.ProfileByUsername}}
+                               </div>
+                                <div class="form-group col-lg-10 col-md-10">
+                                  <label for="username">שם משתמש: </label>
+                                  <input type="text" class="form-control" ng-model="adminPanel.getUserBack.username" placeholder="adminPanel.getUserBack.username">
+                                </div>
+                                <div class="form-group col-lg-10 col-md-10">
+                                  <label for="password">סיסמא: </label>
+                                  <input type="password" class="form-control" ng-model="adminPanel.getUserBack.password" placeholder="adminPanel.getUserBack.password">
+                                </div>
+                                <div class="form-group col-lg-10 col-md-10">
+                                    <label for="email">מייל: </label>
+                                    <input type="email" class="form-control" ng-model="adminPanel.getUserBack.email" placeholder="adminPanel.getUserBack.email">
+                                </div>
+                                <div class="form-group col-lg-10 col-md-10">
+                                    <label for="profile_picture">תמונת משתמש: </label>
+                                    <input type="text" class="form-control" ng-model="adminPanel.getUserBack.profile_picture" placeholder="adminPanel.getUserBack.profile_picture">
+                                </div>
+                                <div class="form-group col-lg-10 col-md-10">
+                                    <label for="about">מידע עלייך: </label>
+                                    <input type="text" class="form-control" ng-model="adminPanel.getUserBack.about" placeholder="adminPanel.getUserBack.about">
+                                </div>
+                                <div class="form-group col-lg-10 col-md-10">
+                                    <label for="username">מספר טלפון: </label>
+                                    <input type="text" class="form-control" ng-model="adminPanel.getUserBack.phone_number" placeholder="adminPanel.getUserBack.phone_number">
+                                </div>
+                                <div class="form-group col-lg-10 col-md-10">
+                                    <label for="cover_photo">Cover: </label>
+                                    <input type="text" class="form-control" ng-model="adminPanel.getUserBack.cover_photo" placeholder="adminPanel.getUserBack.cover_photo">
+                                </div>
+                                <div class="form-group col-lg-10 col-md-10">
+                                    <label for="facebook">facebook: </label>
+                                    <input type="text" class="form-control" ng-model="adminPanel.getUserBack.facebook" placeholder="adminPanel.getUserBack.facebook">
+                                </div>
+                                <div class="form-group col-lg-10 col-md-10">
+                                    <label for="instagram">instagram: </label>
+                                    <input type="text" class="form-control" ng-model="adminPanel.getUserBack.instagram" placeholder="adminPanel.getUserBack.instagram">
+                                </div>
+                                <div class="form-group col-lg-10 col-md-10">
+                                    <label for="whatsapp">whatsapp: </label>
+                                    <input type="text" class="form-control" ng-model="adminPanel.getUserBack.whatsapp" placeholder="adminPanel.getUserBack.whatsapp">
+                                </div>  
+                                <div class="form-group col-lg-10 col-md-10">
+                                    <label for="whatsapp">linkedIn: </label>
+                                    <input type="text" class="form-control" ng-model="adminPanel.getUserBack.linkedIn" placeholder="adminPanel.getUserBack.linkedIn">
+                                </div>
+                                <div class="form-group col-lg-10 col-md-10">
+                                    <label for="location">location: </label>
+                                    <input type="text" class="form-control" ng-model="adminPanel.getUserBack.location" placeholder="adminPanel.getUserBack.location">
+                                </div>
+                                <div class="form-group col-lg-10 col-md-10">
+                                  <button class="btn btn-info" type="submit">ערוך את פרופילו של {{adminPanel.getUserBack.username}}</button>
+                                </div>
+                      </center>
+                  </div>
+                  <div class="bhoechie-tab-content">
+                      <center>
+                            <!-- New Feature -->
+                          <form ng-submit="adminPanel.createNewFeature(featureInfoPack)">
+                              <div class="form-group col-lg-10 col-md-10">
+                                <label for="title">כותרת: </label>
+                                <input type="text" class="form-control" ng-model="adminPanel.featureInfoPack.title" placeholder="כותרת פיצ'ר">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                <label for="sub_title_text">תוכן מידע: </label>
+                                <input type="text" class="form-control" ng-model="adminPanel.featureInfoPack.sub_info" placeholder="תוכן מידע">
+                              </div>
+                              <div class="form-group col-lg-10 col-md-10">
+                                <button class="btn btn-info" type="submit">הוסף פיצ'ר חדש</button>
+                              </div>
+                          </form>
+                          <hr>
+                          <!-- Edit Feature -->
+                          <div ng-repeat="feature in adminPanel.featureToUpdate">
+                            <form ng-submit="adminPanel.updateFeatures(featureToUpdate, $index)">
+                                <div class="form-group col-lg-10 col-md-10">
+                                  <p dir="rtl">עמוד זה נערך בתאריך: {{feature.edit_date}}</p>
+                                </div>
+                                <div class="form-group col-lg-10 col-md-10">
+                                  <label for="title">כותרת: </label>
+                                  <input type="text" class="form-control" ng-model="adminPanel.featureToUpdate[$index].title" placeholder="{{adminPanel.featureToUpdate[$index].title}}">
+                                </div>
+                                <div class="form-group col-lg-10 col-md-10">
+                                  <label for="sub_title_text">מידע משני: </label>
+                                  <input type="text" class="form-control" ng-model="adminPanel.featureToUpdate[$index].sub_info" placeholder="{{adminPanel.featureToUpdate[$index].sub_info}}">
+                                </div>
+                                <div class="form-group col-lg-10 col-md-10">
+                                  <button class="btn btn-danger" type="submit">שנה נתונים</button>
+                                  <button class="btn btn-info" ng-click="adminPanel.deleteFeature(featureToDelete, $index)">מחק</button>
+                                </div>
+                            </form>
+                          </div>
+                      </center>
+                  </div>
+              </div>
+          </div>
+    </div>
+  </div>
+
+  <form ng-submit="adminPanel.loginProfile(loginProfilePack)">
+      <input type="text" ng-model="adminPanel.loginProfilePack.username">
+      <input type="text" ng-model="adminPanel.loginProfilePack.password">
+      <button type="submit">Send</button>
+  </form>

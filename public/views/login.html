@@ -1,0 +1,22 @@
+<div class="container space">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <h1 class="text-center login-title">פאנל התחברות</h1>
+            <div class="account-wall">
+                <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                    alt="">
+                <form class="form-signin" name="signForm" ng-submit="login.login(loginData)">
+                    <input type="text" class="form-control" placeholder="שם משתמש" ng-model="login.loginData.username" required autofocus>
+                    <br>
+                    <input type="password" class="form-control" placeholder="סיסמא" ng-model="login.loginData.password" required>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">התחבר</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alert-login {{login.loginClass}}" role="alert">
+    {{login.isLoggedIn}}
+</div>
+
