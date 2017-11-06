@@ -1,13 +1,11 @@
-angular.module('adminApp', ['adminServ', 'profileServ'])
-    .controller('adminController', function($timeout, $location, $rootScope, $window, Adm, Prf){
+angular.module('adminApp', ['adminServ'])
+    .controller('adminController', function($timeout, $location, $rootScope, $window, Adm){
         let app = this;
         this.isLogged = false;
-        this.isLoggedProfile = false;
 
         $rootScope.$on('$routeChangeStart', function(){
             //Admin change
             if( Adm.isloggedIn() ){
-                console.log('Success: The user is logged in!');
                 Adm.getUser().then(function(data){
                     app.adminInfo = {
                         username: data.data.username,
@@ -25,24 +23,6 @@ angular.module('adminApp', ['adminServ', 'profileServ'])
                 app.isLogged = false;
             }
 
-            //Profile change
-            if( Prf.isloggedIn() ){
-                console.log('Success: The user is logged in!');
-                Prf.getUser().then(function(data){
-                    app.profileInfo = {
-                        username: data.data.username,
-                        email: data.data.email
-                    }
-                });
-                app.isLoggedProfile = true;
-            }else{
-                app.profileInfo = {
-                    username: '',
-                    email: ''
-                }
-                app.isLoggedProfile = false;
-            }
-
             if($location.hash() == '_=_') $location.hash(null);
         })
 
@@ -55,6 +35,7 @@ angular.module('adminApp', ['adminServ', 'profileServ'])
                         phone_number: data.data.info.phone,
                         email: data.data.info.email
                     }
+
                     app.isLoggedIn = data.data.message;
                     app.loginClass = 'alert alert-info';
                     $timeout(function(){ 
@@ -69,41 +50,11 @@ angular.module('adminApp', ['adminServ', 'profileServ'])
         
         this.logout = function () {
             Adm.logout();
-            console.log('YES');
 
             $location.path('/success');
             $timeout(function(){ 
                 $location.path('/');
             }, 2000);
         } 
-
-        // Login profiles
-        this.loginIntoProfile = function(profileData) {
-            Prf.login(app.profileData).then(function(data){
-                if(data.data.success){
-                    app.profileInfo = {
-                        username: data.data.info.username,
-                        email: data.data.info.email
-                    }
-                    app.isLoggedInProfile = data.data.message;
-                    app.loginClassProfile = 'alert alert-info';
-                    $timeout(function(){ 
-                        $location.path('/');
-                    }, 2000);
-                } else {
-                    app.isLoggedInProfile = data.data.message; 
-                    app.loginClassProfile = 'alert alert-danger';
-                }
-            });
-        }
-
-        this.logoutProfile = function () {
-            Prf.logout();
-            console.log('YES');
-
-            $location.path('/success');
-            $timeout(function(){ 
-                $location.path('/');
-            }, 2000);
-        } 
+        
     })

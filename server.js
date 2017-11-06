@@ -10,7 +10,7 @@ let multer     = require('multer');
 // Routes
 let api  = require('./api/routes/app')(router);
 let administrator = require('./api/routes/administrator')(router);
-let profileMsg = require('./api/routes/profileMsg')(router);
+let profiles = require('./api/routes/profiles')(router);
 
 //Port
 const port = process.env.PORT || 3000;
@@ -26,7 +26,7 @@ app.use(express.static(__dirname+ '/public')); //Root of location
 //Route Paths
 app.use('/admin', api);
 app.use('/manage', administrator);
-app.use('/pr', profileMsg);
+app.use('/pr', profiles);
 
 mongoose.connect('mongodb://localhost:27017/easy2share', {useMongoClient:true}, function(err){
     if (err) console.log('Some Error accoure: ' +err);

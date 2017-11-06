@@ -1,6 +1,8 @@
-angular.module('mainApp', ['appRoute', 'mainCApp', 'mainServ', 'adminApp', 'adminServ', 'profileServ'])
+angular.module('mainApp', ['appRoute', 'mainCApp', 'profileApp', 'mainServ', 'adminApp', 'adminServ', 'profileServ'])
     .config(function($httpProvider) {
         $httpProvider.interceptors.push('AuthInterceptors');
-        $httpProvider.interceptors.push('AuthUserInterceptors');
-    });
+    })
+    .config(function($httpProvider) {
+        $httpProvider.interceptors.push('AuthInterceptorsProfile');
+    })
     

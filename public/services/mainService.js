@@ -75,15 +75,5 @@ angular.module('mainServ', [])
             return $http.post('/pr/getUserByUsername', getUserByUsernamePack);
         }
 
-        // mainFactory.loginProfile = function(loginProfilePack) {
-        //     return $http.post('/pr/authenticate', loginProfilePack);
-        // }
-
-        // mainFactory.getProfileByUsernameUrl = function(usernameUrl) {
-        //     console.log(usernameUrl);
-        //     // objectProfile = { username: usernameUrl }; 
-        //     return $http.post('/pr/getUserByUsernameUrl'+ usernameUrl);
-        // }
-
         return mainFactory;
     });

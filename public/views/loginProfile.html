@@ -5,10 +5,10 @@
                 <div class="account-wall">
                     <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                         alt="">
-                    <form class="form-signin" name="signForm" ng-submit="login.loginIntoProfile(profileData)">
-                        <input type="text" class="form-control" placeholder="שם משתמש" ng-model="login.profileData.username" required autofocus>
+                    <form class="form-signin" name="signForm" ng-submit="loginProfile.login(profileLoginData)">
+                        <input type="text" class="form-control" placeholder="מייל" ng-model="loginProfile.profileLoginData.email" required autofocus>
                         <br>
-                        <input type="password" class="form-control" placeholder="סיסמא" ng-model="login.profileData.password" required>
+                        <input type="password" class="form-control" placeholder="סיסמא" ng-model="loginProfile.profileLoginData.password" required>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">התחבר</button>
                     </form>
                 </div>
@@ -16,7 +16,6 @@
         </div>
     </div>
     
-    <div class="alert-login {{login.loginClassProfile}}" role="alert">
-        {{login.isLoggedInProfile}}
+    <div class="alert-login {{loginProfile.loginClass}}" role="alert">
+            {{loginProfile.isLoggedIn}}
     </div>
-     

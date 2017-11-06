@@ -17,9 +17,12 @@
                             <!-- Collection of nav links and other content for toggling -->
                             <div id="navbarCollapse" class="collapse navbar-collapse">
                                 <ul class="nav navbar-nav navbar-right">
-                                    <li><a href="#footer" ng-show="admin.isLogged" ng-click="admin.logout();">התנתקות</a></li>
+                                    <li><a ng-show="admin.isLogged" ng-click="admin.logout();">התנתקות</a></li>
                                     <li><a href="/adminPanel" ng-show="admin.isLogged">{{admin.adminInfo.username}} פאנל ניהולי</a></li>
-                                    <li><a href="/adminPanel" ng-show="admin.isLoggedProfile">{{admin.profileInfo.username}} פאנל ניהולי</a></li>
+                                    <li ng-controller="profileController as profileCtrl">
+                                        <a href="/" ng-show="profileCtrl.isLogged">{{profileCtrl.profileInfo.username}} פאנל ניהולי</a>
+                                        <a ng-show="profileCtrl.isLogged" ng-click="profileCtrl.logout();">התנתקות</a>
+                                    </li>
                                     <li><a href="#footer">התקשרות</a></li>
                                     <li><a href="#About-us">מידע נוסף</a></li>
                                     <li><a href='#features'>פיצ'רים</a></li>

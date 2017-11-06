@@ -302,8 +302,8 @@
     </div>
   </div>
 
-  <form ng-submit="adminPanel.loginProfile(loginProfilePack)">
-      <input type="text" ng-model="adminPanel.loginProfilePack.username">
-      <input type="text" ng-model="adminPanel.loginProfilePack.password">
-      <button type="submit">Send</button>
+  <form ng-submit="adminPanel.login(profileLoginData)">
+      <input type="text" ng-model="adminPanel.profileLoginData.email">
+      <input type="password" ng-model="adminPanel.profileLoginData.password">
+      <button type="submit">Check</button>
   </form>

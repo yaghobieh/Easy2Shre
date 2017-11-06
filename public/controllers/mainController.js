@@ -1,5 +1,5 @@
-angular.module('mainCApp', ['mainServ', 'adminServ'])
-    .controller('mainController', function($http, $timeout, $routeParams, Mcs, Adm){
+angular.module('mainCApp', ['mainServ', 'adminServ', 'profileServ'])
+    .controller('mainController', function($http, $timeout, $routeParams, Mcs, Adm, Profile){
         var app = this; //Static this for inside a function
         this.form_active = true;
         this.showUserBack = false; //Show back Select Profile
@@ -123,7 +123,7 @@ angular.module('mainCApp', ['mainServ', 'adminServ'])
         this.getUserByUsername = function() {
             app.username = { username: app.chengedUser };
             Mcs.getUserByUsername(app.username).then(function(data){
-                app.getUserBack = data.data.info[0];
+                app.getUserBack = data.data.info;
                 app.showUserBack = true;
             });
         }
@@ -141,11 +141,14 @@ angular.module('mainCApp', ['mainServ', 'adminServ'])
             });
         }
 
-        // this.getProfileByUsernameUrl = function() {
-        //     let username = $routeParams.username; 
-        //     Mcs.getProfileByUsernameUrl(username).then(function(data){
-        //         console.log(data);
-        //     })
-        // }
+        //Profile
+        this.login = function(profileLoginData) {
+            console.log(app.profileLoginData);
+            Profile.login(app.profileLoginData).then(function(data){
+                console.log(data.data);
+            });
+        }
+
+        
 
     });

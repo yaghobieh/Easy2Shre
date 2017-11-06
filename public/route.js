@@ -8,11 +8,11 @@ let app = angular.module('appRoute', ['ngRoute'])
                 controllerAs: 'main'
             })
 
-            .when('/About-us', {
-                templateUrl: 'views/about-us.html',
-                controller: 'mainController',
-                controllerAs: 'about'
-            })
+            // .when('/About-us', {
+            //     templateUrl: 'views/about-us.html',
+            //     controller: 'mainController',
+            //     controllerAs: 'about'
+            // })
 
             .when('/login' ,{
                 templateUrl: 'views/login.html',
@@ -23,8 +23,9 @@ let app = angular.module('appRoute', ['ngRoute'])
 
             .when('/loginProfile', {
                 templateUrl: 'views/loginProfile.html',
-                controller: 'adminController',
-                controllerAs: 'login'
+                controller: 'profileController',
+                controllerAs: 'loginProfile',
+                isProfile: false
             })
 
             .when('/adminPanel', {
@@ -51,7 +52,7 @@ let app = angular.module('appRoute', ['ngRoute'])
 
     })
 
-app.run(['$rootScope', 'Adm', '$location', '$timeout', function ($rootScope, Adm, $location, $timeout) {
+app.run(['$rootScope', 'Adm', 'Profile', '$location', '$timeout', function ($rootScope, Adm, Profile, $location, $timeout) {
     
     $rootScope.$on('$routeChangeStart', function(event, next, current){
         if(next.$$route.authenticated == true){
@@ -71,7 +72,23 @@ app.run(['$rootScope', 'Adm', '$location', '$timeout', function ($rootScope, Adm
                 $location.path('/');
               }, 2000);
             }
+          } else if (next.$$route.isProfile == true) {
+            if(!Profile.isloggedIn()){
+                event.preventDefault();
+                $location.path('/error');
+                $timeout(function () {
+                  $location.path('/');
+                }, 2000);
+            }
+          }  else if (next.$$route.isProfile == false){
+            if (Profile.isloggedIn()) {
+                event.preventDefault();
+                $location.path('/error')
+                $timeout(function () {
+                  $location.path('/');
+                }, 2000);
           }
+        }
     });
     
 }]);

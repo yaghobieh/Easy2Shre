@@ -1,7 +1,7 @@
 angular.module('adminServ', [])
     .factory('Adm', function($http, AuthToken){
         adminFactory = {};
-
+        
         // Set token into localStorage
         adminFactory.login = function(loginData) {
             

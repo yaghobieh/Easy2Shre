@@ -3,7 +3,7 @@ let jwt     = require('jsonwebtoken');
 let secret  = 'easy2share';
 
 module.exports = function (router) {
-
+    
     router.post('/admin', function(req, res){
         let admin = new Admin();
         admin.full_name = req.body.full_name;
@@ -46,7 +46,7 @@ module.exports = function (router) {
     });
 
     router.post('/authenticate', function(req, res){
-        Admin.findOne({ username: req.body.username }).select('username email password phone_number').exec(function(err, admin){
+        Admin.findOne({username: req.body.username}, function(err, admin){
           if (err) throw err;
     
           if(!admin){
@@ -63,8 +63,8 @@ module.exports = function (router) {
               res.json({ success: false, message: 'סיסמא לא תקינה' });
             }else{
               //If Validation is true -> create TOKEN for 24H
-              var token = jwt.sign({ username: admin.username, email: admin.email, phone: admin.phone_number}, secret, { expiresIn: '24h' }); 
-              res.json({ success: true, message: 'התחברות הצליחה', token: token, info: {username: admin.username, email: admin.email, phone: admin.phone_number} });
+              var token = jwt.sign({username: admin.username}, secret, { expiresIn: '24h' }); 
+              res.json({ success: true, message: 'התחברות הצליחה', token: token, info: admin });
             }
           }
         })
@@ -72,7 +72,7 @@ module.exports = function (router) {
 
       router.use(function(req, res, next) {
         var token = req.body.token || req.body.query || req.headers['x-access-token']; // Check for token in body, URL, or headers
-  
+
         // Check if token is valid and not expired  
         if (token) {
             // Function to verify token
